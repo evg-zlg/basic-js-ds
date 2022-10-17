@@ -22,9 +22,52 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function removeKFromList(l, k) {
+  if (l.length <= 0) {return null};
+    let current = l.head;
+    let currentPrev = l.head;
+    for (let i = 0; i < l.length; i++) {
+        console.log("Актуальный объект:")
+        console.log(current)
+        console.log("значение:"+current.value)
+        if (current.value === k) {
+            console.log("Нашли объект:")
+            console.log(current)
+            console.log("Следующий объект:")
+            console.log(current.next)
+            
+            if (current === l.head) {
+                l.head = current.next;
+                i--;
+                currentPrev = current;
+                current = current.next;
+            } else {
+                if (! current.next) {
+                    console.log("current end:")
+                    console.log(current)
+                    currentPrev.next = null;
+                    
+                } else {
+                    console.log("current next:")
+                    console.log(current.next)
+                    console.log("currentPrev :")
+                    console.log(currentPrev)
+                    console.log("currentPrev next:")
+                    console.log(currentPrev.next)
+                    
+                    currentPrev.next = current.next;
+                    i--;
+
+                    
+                    current = current.next;
+                }
+            }
+            l.length --;
+        } else {
+            currentPrev = current;
+            current = current.next;
+        }
+    }
 }
 
 module.exports = {
